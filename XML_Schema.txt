@@ -1,0 +1,122 @@
+I-Tipos simples y atributos.
+
+Ejemplo etiqueta simple: <nombre>Contenido</nombre>
+
+Sintaxis:
+a)<element name="nombre" type="tipo_ya_creado" (podemos añadir default="" o fixed="")/>
+
+o
+
+b)<element name="nombre">
+    <simpleType>
+        [<restriction base="tipo_Base">
+            ...restricciones
+        <restriction>
+        ]
+    </simpleType>
+</element>
+
+II-Tipos complejos:
+
+1- Tipo 1. Contenido Simple con atributos.
+
+Ejemplo: <nombre atributo="" ...>Contenido</nombre>
+
+Sintaxis:
+a)Haciendo la definición al vuelo:
+    <element name="nombre">
+        <complexType>
+            <simpleContent>
+                <extension base="tipo_simple_en_el_que_se_basa">
+                    <attribute name="atributo" type="tipo_atributo />
+                </extension> 
+            </simpleContent> 
+         </complexType>
+     </element>
+
+b)Definiendo primero el tipo:
+  
+    <complexType name="nombre_Tipo">
+        <simpleContent>
+            <extension base="tipo_simple_en_el_que_se_basa">
+                <attribute name="atributo" type="tipo_atributo />
+            </extension> 
+        </simpleContent> 
+    </complexType>
+
+    <element name="nombre" type="nombre_Tipo" />
+
+2- Tipo 2. Etiqueta vacía, opcionalmente con atributos.
+
+Ejemplo: <nombre atributo="" .../>
+
+Sintaxis:
+a)Haciendo la definición al vuelo:
+    <element name="nombre">
+        <complexType>
+            <complexContent>
+                <restriction base="anyType">
+                    <attribute name="atributo" type="tipo_atributo />
+                    ...
+                    (Nota: Si no hay atributos, esta zona quedaría vacía)
+                </restriction> 
+            </complexContent> 
+         </complexType>
+     </element>
+
+3- Tipo 3. Etiqueta con hijos, opcionalmente con atributos.
+
+Ejemplo: <nombre atributo="" ...>
+            <hijo1>
+                Contenido
+            </hijo1>
+            <hijo2>
+                Contenido
+            </hijo2>
+        </nombre>
+
+Sintaxis:
+a)Haciendo la definición al vuelo:
+    <element name="nombre">
+        <complexType>
+            <complexContent>
+                <restriction base="anyType">
+                    <attribute name="atributo" type="tipo_atributo />
+                    <sequence> (Importa el orden, con <all> no importaría)
+                        <element name="hijo1" type"tipo_hijo1 />
+                        <element name="hijo2" type"tipo_hijo1 (Podemos poner a cada hijo cardinalidades con minOccurs="" y maxOccurs="")/>
+                    </sequence>
+                </restriction> 
+            </complexContent> 
+         </complexType>
+     </element>
+
+4- Tipo 4. Mixto, etiqueta con hijos y contenido, opcionalmente con atributos.
+
+Ejemplo: <nombre atributo="" ...>
+            Contenido
+            <hijo1>
+                Contenido
+            </hijo1>
+            Contenido
+            <hijo2>
+                Contenido
+            </hijo2>
+            Contenido
+        </nombre>
+
+Sintaxis:
+a)Haciendo la definición al vuelo:
+    <element name="nombre">
+        <complexType mixed="true">
+            <complexContent>
+                <restriction base="anyType">
+                    <attribute name="atributo" type="tipo_atributo />
+                    <sequence> (Importa el orden, con <all> no importaría)
+                        <element name="hijo1" type"tipo_hijo1 />
+                        <element name="hijo2" type"tipo_hijo1 (Podemos poner a cada hijo cardinalidades con minOccurs="" y maxOccurs="")/>
+                    </sequence>
+                </restriction> 
+            </complexContent> 
+         </complexType>
+     </element>

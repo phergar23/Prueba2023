@@ -1,0 +1,20 @@
+<!-- Primera opción -->
+
+<element name="edad">
+    <simpleType>
+        <restriction base="integer">
+            <maxInclusive value="130"/>
+            <minInclusive value="0" />
+        </restriction>
+    </simpleType>
+</element>
+
+<!-- Segunda opción -->
+ <simpleType name="tipoEdad">
+        <restriction base="integer">
+            <maxInclusive value="130"/>
+            <minInclusive value="0" />
+        </restriction>
+</simpleType>
+
+<element name="edad" type="tipoEdad"/>

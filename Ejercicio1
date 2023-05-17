@@ -1,0 +1,22 @@
+<contactos>
+    <contacto id=1>Pepe</contacto>
+</contactos>
+
+<element name="contactos">
+    <complexType>
+        <complexContent>
+            <restriction base="anyType">
+                <sequence>
+                    <element name="contacto">
+                        <complexType>
+                            <simpleContent>
+                                <extension base="string">
+                                    <attribute name="id" type="positiveInteger"/>
+                                </extension>
+                            </simpleContent>
+                        </complexType>
+                    </element>
+                </sequence>
+            </restriction>
+        </complexContent>
+    </complexType>

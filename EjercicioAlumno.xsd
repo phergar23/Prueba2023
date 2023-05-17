@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- Definición de tipos simples -->
+    <xs:simpleType name="tipoId">
+    <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="100"/>
+    </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Definición de tipos complejos -->
+    
+    
+    <!-- Comienzo del esquema -->
+    <xs:element name="alumno">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:restriction base="xs:anyType">
+                    <xs:sequence>
+                        <xs:element name="nombre" type="xs:string" default="Desconocido"/>
+                        <xs:element name="direccion" type="xs:string" maxOccurs="unbounded" />    
+                    </xs:sequence>
+                    <xs:attribute name="id" type="tipoId" />
+                </xs:restriction>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
